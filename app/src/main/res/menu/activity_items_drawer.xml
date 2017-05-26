@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/items"
+            android:icon="@drawable/home_icon"
+            android:title="My Items" />
+        <item
+            android:id="@+id/recipes"
+            android:icon="@drawable/recipe_icon"
+            android:title="Recipes" />
+        <item
+            android:id="@+id/dashboard"
+            android:icon="@drawable/chart_icon"
+            android:title="Dashboard" />
+        <item
+            android:id="@+id/vouchers"
+            android:icon="@drawable/vouchers_icon"
+            android:title="Vouchers" />
+    </group>
+
+    <item android:title="Personalisation">
+        <menu>
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/settings_icon"
+                android:title="Settings" />
+            <item
+                android:id="@+id/sign_out"
+                android:icon="@drawable/sign_out_icon"
+                android:title="Sign Out" />
+        </menu>
+    </item>
+
+</menu>
