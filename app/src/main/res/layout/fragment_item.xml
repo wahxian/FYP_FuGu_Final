@@ -5,10 +5,46 @@
     tools:context="com.minimalwaste.fypv2_fragments.ItemFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:gravity="center"
+    <LinearLayout
+        android:id="@+id/top_panel"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="View your Items here" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#b3b3ff"
+        android:padding="6dp" >
+
+
+
+        <TextView
+            android:layout_weight="1"
+            android:gravity="top|start"
+            android:textSize="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Your List of Items" />
+
+
+
+        <Spinner
+            android:scrollbarSize="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/sorting_spinner"
+            android:entries="@array/sorting_methods"
+            android:prompt="@string/sort">
+        </Spinner>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ListView
+            android:layout_marginTop="35dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/LVFI" />
+    </LinearLayout>
 
 </RelativeLayout>

@@ -5,9 +5,57 @@
     tools:context="com.minimalwaste.fypv2_fragments.DashboardFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello this is the Dashboard Fragment" />
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/Middle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_margin="10dp"
+                android:id="@+id/TVFD"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Volume" />
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/barGraphVolume"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_below="@+id/TVFD">
+
+            </com.github.mikephil.charting.charts.BarChart>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/Middle">
+            <TextView
+                android:id="@+id/TVFD2"
+                android:layout_margin="10dp"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Weight" />
+            <com.github.mikephil.charting.charts.BarChart
+
+                android:id="@+id/barGraphWeight"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_below="@+id/TVFD2">
+
+            </com.github.mikephil.charting.charts.BarChart>
+        </RelativeLayout>
+
+    </RelativeLayout>
+
 
 </FrameLayout>

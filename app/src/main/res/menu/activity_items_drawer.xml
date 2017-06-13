@@ -3,13 +3,13 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/items"
-            android:icon="@drawable/home_icon"
-            android:title="My Items" />
-        <item
             android:id="@+id/recipes"
             android:icon="@drawable/recipe_icon"
             android:title="Recipes" />
+        <item
+            android:id="@+id/items"
+            android:icon="@drawable/home_icon"
+            android:title="My Items" />
         <item
             android:id="@+id/dashboard"
             android:icon="@drawable/chart_icon"

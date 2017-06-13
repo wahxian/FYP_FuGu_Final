@@ -1,10 +1,12 @@
 package com.minimalwaste.fypv2_fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,14 +16,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
 
 public class ItemsActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     NavigationView navigationView = null;
     Toolbar toolbar = null;
-
+//    ArrayList<String> ItemList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,12 +41,18 @@ public class ItemsActivity extends AppCompatActivity
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //--------------------------------------------------------------------
-        Fragment fragment = new RecipeFragment();
+        //--------------------------Paste your Starting Fragment------------------------------
+        Fragment fragment = new DashboardFragment();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.fragment_container, fragment);
         ft.commit();
-        getSupportActionBar().setTitle("My Items");
+        getSupportActionBar().setTitle("Dashboard");
+
+//        Fragment fragment = new ItemFragment();
+//        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+//        ft.replace(R.id.fragment_container, fragment);
+//        ft.commit();
+//        getSupportActionBar().setTitle("My Items");
 
         //--------------------------------------------------------------------
 
@@ -48,7 +64,32 @@ public class ItemsActivity extends AppCompatActivity
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //===============Load Products From Text=========================
+        //Format of reading: Item, Brand, Expiry date, Price
+//        ReadWordsfromFile();
+
+
     }
+
+//    private void ReadWordsfromFile() {
+//        Scanner scan = new Scanner(getResources().openRawResource(R.raw.groceries));
+//        while (scan.hasNextLine()) {
+//            String line = scan.nextLine();
+//            String[] parts = line.split("\t");
+////            if(parts.length()>=4){
+////                String Item = parts[0];
+////                String Brand = parts[1];
+////                String Expiry = parts[2];
+////                String Price = parts[3];
+////            }
+//            ItemList.addAll(Arrays.asList(parts));
+//        }
+//        String Word = ItemList[0];
+//        Toast.makeText(this, ItemList[0], Toast.LENGTH_SHORT).show();
+//    }
+
+
 
     @Override
     public void onBackPressed() {
@@ -76,6 +117,7 @@ public class ItemsActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Toast.makeText(this, "Please do not Report Us", Toast.LENGTH_SHORT).show();
             return true;
         }
 
@@ -125,5 +167,11 @@ public class ItemsActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+    public void BFRAdd(View view) {
+        Intent intent = new Intent(this,AddRecipeActivity.class);
+        startActivity(intent);
     }
 }
