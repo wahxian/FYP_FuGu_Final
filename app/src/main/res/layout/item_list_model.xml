@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="130dp">
+
+    <ImageView
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:src="@drawable/logo2"
+        android:id="@+id/IVILMname"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@+id/IVILMname">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@+id/daysremaining">
+            <TextView
+                android:id="@+id/TVIMItem"
+                android:textSize="15dp"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="ItemName"
+                android:padding="5dp"
+                android:textStyle="bold"
+                android:layout_above="@+id/TVIMBrand"
+                android:layout_alignParentTop="true" />
+
+            <TextView
+                android:id="@+id/TVIMBrand"
+                android:textSize="15dp"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="TextView"
+                android:padding="5dp"
+                android:layout_above="@+id/TVIMPrice"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <!--<TextView-->
+                <!--android:id="@+id/TVIMDate"-->
+                <!--android:textSize="15dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="40dp"-->
+                <!--android:text="TextView" -->
+                <!--android:layout_below="@+id/TVIMBrand"/>-->
+
+            <TextView
+                android:id="@+id/TVIMPrice"
+                android:textSize="15dp"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="TextView"
+                android:padding="5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/daysremaining"
+            android:textSize="15dp"
+            android:layout_weight="1"
+            android:layout_width="100dp"
+            android:layout_alignParentRight="true"
+            android:layout_height="45dp"
+            android:text="Days Remaining"
+            android:padding="4dp"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/TVIMDate"
+            android:textSize="15dp"
+            android:layout_weight="1"
+            android:layout_width="100dp"
+            android:layout_alignParentRight="true"
+            android:layout_height="match_parent"
+            android:text="LOREMIPSUM"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_below="@+id/daysremaining"
+            />
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>
+
+<!--FormatL Item, Brand, Date, Price-->

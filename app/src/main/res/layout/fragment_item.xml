@@ -8,10 +8,10 @@
     <LinearLayout
         android:id="@+id/top_panel"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="34dp"
         android:orientation="horizontal"
-        android:background="#b3b3ff"
-        android:padding="6dp" >
+        android:background="#B0E0E6"
+        android:padding="0dp" >
 
 
 
@@ -21,17 +21,18 @@
             android:textSize="20sp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Your List of Items" />
-
+            android:text="Your List of Items"
+            android:layout_margin="5dp"/>
 
 
         <Spinner
             android:scrollbarSize="20dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="34dp"
             android:id="@+id/sorting_spinner"
             android:entries="@array/sorting_methods"
-            android:prompt="@string/sort">
+            android:prompt="@string/sort"
+            android:background="#B0E0E6">
         </Spinner>
 
     </LinearLayout>

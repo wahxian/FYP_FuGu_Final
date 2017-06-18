@@ -1,6 +1,7 @@
 package com.minimalwaste.fypv2_fragments;
 
 import android.content.Intent;
+import android.net.wifi.WifiConfiguration;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -32,22 +33,34 @@ public class ItemsActivity extends AppCompatActivity
     NavigationView navigationView = null;
     Toolbar toolbar = null;
 //    ArrayList<String> ItemList = new ArrayList<>();
+    String extra = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_items);
 
+        getIntent();
+        extra = getIntent().getStringExtra("LoginResult");
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //--------------------------Paste your Starting Fragment------------------------------
-        Fragment fragment = new DashboardFragment();
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.fragment_container, fragment);
-        ft.commit();
-        getSupportActionBar().setTitle("Dashboard");
+        //Starting Screen
+        Fragment fragment1 = new RecipeFragment();
+        FragmentTransaction ft1 = getSupportFragmentManager().beginTransaction();
+        ft1.replace(R.id.fragment_container, fragment1);
+        ft1.commit();
+        getSupportActionBar().setTitle("Recipes");
 
+        //--------------------------Paste your Starting Fragment------------------------------
+
+//        int extra2 = Integer.parseInt(getIntent().getStringExtra("Token"));
+//        Log.d("String returned", "after Intent"+extra);
+        if(extra==null) {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
 //        Fragment fragment = new ItemFragment();
 //        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 //        ft.replace(R.id.fragment_container, fragment);
@@ -88,7 +101,6 @@ public class ItemsActivity extends AppCompatActivity
 //        String Word = ItemList[0];
 //        Toast.makeText(this, ItemList[0], Toast.LENGTH_SHORT).show();
 //    }
-
 
 
     @Override
@@ -158,10 +170,18 @@ public class ItemsActivity extends AppCompatActivity
             getSupportActionBar().setTitle("Vouchers");
 
 
-        } else if (id == R.id.nav_settings) {
+        } else if (id == R.id.preference) {
+            Intent intent = new Intent(this, PreferenceActivity.class);
+            startActivity(intent);
+
+        }else if (id == R.id.nav_settings) {
+            Intent intent = new Intent(this, WiFiConfig.class);
+            startActivity(intent);
 
         } else if (id == R.id.sign_out) {
-
+            extra=null;
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

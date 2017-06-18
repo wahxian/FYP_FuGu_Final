@@ -53,15 +53,13 @@ public class VouchersFragment extends Fragment {
 
         prepareAlbums();
 
-//        try {
-//            Glide.with(this).load(R.drawable.cover).into((ImageView) view.findViewById(R.id.backdrop));
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-
         return view;
     }
 
+
+    //*********************************************************************************************//
+    //                  Initialise Vouchers                                                        //
+    //*********************************************************************************************//
     private void prepareAlbums() {
         int[] covers = new int[]{
                 R.drawable.album1,

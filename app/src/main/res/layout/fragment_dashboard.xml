@@ -6,54 +6,111 @@
 
     <!-- TODO: Update blank fragment layout -->
     <RelativeLayout
+        android:id="@+id/toplayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center|top"
+        android:paddingTop="10dp">
 
-        <RelativeLayout
-            android:id="@+id/Middle"
+        <Button
+            android:id="@+id/BFDweek"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_margin="10dp"
-                android:id="@+id/TVFD"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Volume" />
+            android:layout_height="30dp"
+            android:text="Week"
+            android:background="#80DEEA" />
 
-            <com.github.mikephil.charting.charts.BarChart
-                android:id="@+id/barGraphVolume"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_below="@+id/TVFD">
+        <Button
+            android:id="@+id/BFDmonth"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_toRightOf="@+id/BFDweek"
+            android:text="Month"
+            android:background="#80CBC4" />
 
-            </com.github.mikephil.charting.charts.BarChart>
+        <Button
+            android:id="@+id/BFDyear"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_toRightOf="@+id/BFDmonth"
+            android:text="Year"
+            android:background="#A5D6A7" />
 
-        </RelativeLayout>
+    </RelativeLayout>
 
-        <RelativeLayout
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp">
+
+        <TextView
+            android:id="@+id/TVFD2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Weight"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/barGraphWeight"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_below="@+id/TVFD2"
+            android:layout_margin="10dp"
+            android:background="@color/cardview_dark_background">
+
+        </com.github.mikephil.charting.charts.BarChart>
+
+        <TextView
+            android:id="@+id/TVFDdustbin"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:text="Dustbin"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_below="@+id/barGraphWeight" />
+
+        <ImageView
+            android:id="@+id/IVFDdustbin"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/TVFDdustbin"
+            android:src="@drawable/dustbin"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:background="#E8F0F7"/>
+
+        <TextView
+            android:id="@+id/TVFDrecommendation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Recommendations"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_below="@+id/barGraphWeight"
+            android:layout_toRightOf="@+id/TVFDdustbin"/>
+
+        <TextView
+            android:id="@+id/TVFDrecom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="LOREMIPSUMASKJDLJALKSHFKJASHKJDHLAKJSHLKDJHLAKJSHLDKJAHLSKJDHLAKJSHLDKJAHLJSKDHLAJKHSL"
+            android:padding="10dp"
+            android:textSize="16dp"
+            android:layout_toRightOf="@+id/IVFDdustbin"
+            android:layout_below="@+id/TVFDrecommendation"
+            android:background="#E8F0F7"
             android:layout_marginTop="10dp"
-            android:layout_below="@+id/Middle">
-            <TextView
-                android:id="@+id/TVFD2"
-                android:layout_margin="10dp"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Weight" />
-            <com.github.mikephil.charting.charts.BarChart
-
-                android:id="@+id/barGraphWeight"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_below="@+id/TVFD2">
-
-            </com.github.mikephil.charting.charts.BarChart>
-        </RelativeLayout>
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"/>
 
     </RelativeLayout>
 

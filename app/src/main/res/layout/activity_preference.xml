@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.minimalwaste.fypv2_fragments.PreferenceActivity">
+
+    <GridView
+        android:id="@+id/GVAP"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:numColumns="2"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp"
+        android:layout_below="@+id/TVAP">
+
+    </GridView>
+
+    <TextView
+        android:id="@+id/TVAP"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/colorPrimary"
+        android:text="Preference"
+        android:fontFamily="sans-serif"
+        android:textColor="#FFFFFF"
+        android:padding="16dp"
+        android:textSize="20dp"/>
+
+    <Button
+        android:id="@+id/BAP"
+        android:layout_width="wrap_content"
+        android:layout_height="55dp"
+        android:layout_gravity="right"
+        android:background="@color/colorPrimary"
+        android:text="Finish"
+        android:textColor="#FFFFFF"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+
+</RelativeLayout>

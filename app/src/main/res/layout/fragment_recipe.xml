@@ -1,5 +1,4 @@
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,58 +6,63 @@
 
     <!-- TODO: Update blank fragment layout -->
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:gravity="top"
         android:id="@+id/LLFRTop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="top"
         android:orientation="horizontal">
-        <TextView
-            android:id="@+id/TVFRTop"
-            android:layout_marginTop="6dp"
-            android:layout_marginLeft="7dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="My Recipes"
-            android:textSize="15dp"
-            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/ETFRsearch"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingLeft="10dp"
+            android:hint="Search"
+            android:layout_toStartOf="@+id/BFRfind"
+            android:layout_toLeftOf="@+id/BFRfind"
+            />
 
         <Button
-            android:id="@+id/addButton"
-            android:onClick="BFRAdd"
-            android:layout_width="55dp"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="Add"
-            android:textSize="10dp"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/BFRadd"
+            android:layout_above="@+id/LVFRecipe"
+            android:id="@+id/BFRfind"
+            android:background="#7FFFFFFF"
+            android:cursorVisible="false"
+            />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/find"
+            android:layout_alignParentTop="true"
+            android:layout_alignLeft="@+id/BFRfind"
+            android:layout_alignStart="@+id/BFRfind" />
+
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:id="@+id/BFRadd"
+            android:text="Add"
+            android:layout_above="@+id/LVFRecipe"
+            android:background="#FFFFFF"/>
 
+        <ListView
+            android:id="@+id/LVFRecipe"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/ETFRsearch"
+            android:divider="@null"
+            android:dividerHeight="0dp"
+            />
     </RelativeLayout>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/RVFR"
-        android:layout_width="wrap_content"
-        android:layout_height="120dp"
-        android:layout_below="@+id/LLFRTop"/>
-
-
-    <TextView
-        android:padding="7dp"
-        android:id="@+id/TVFRBottom"
-        android:textSize="15dp"
-        android:textStyle="bold"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/RVFR"
-        android:text="Yummly Recipes"/>
-
-    <ListView
-        android:id="@+id/LVFRecipe"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/TVFRBottom"/>
-
 
 
 </RelativeLayout>

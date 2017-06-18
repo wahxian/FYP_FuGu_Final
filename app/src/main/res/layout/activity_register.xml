@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.minimalwaste.fypv2_fragments.RegisterActivity"
+    android:background="@drawable/login">
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:hint="First Name"
+        android:textColorHint="#b3b3cc"
+        android:textColor="#FFFFFF"
+        tools:layout_editor_absoluteY="79dp"
+        tools:layout_editor_absoluteX="42dp"
+        android:background="#7F000000"
+        android:id="@+id/ETARfirst"
+        android:layout_marginTop="76dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:padding="10dp"
+        />
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:hint="Last Name"
+        android:textColorHint="#b3b3cc"
+        android:textColor="#FFFFFF"
+        tools:layout_editor_absoluteY="119dp"
+        tools:layout_editor_absoluteX="42dp"
+        android:background="#7F000000"
+        android:id="@+id/ETARlast"
+        android:layout_below="@+id/ETARfirst"
+        android:layout_alignLeft="@+id/ETARfirst"
+        android:layout_alignStart="@+id/ETARfirst"
+        android:padding="10dp"
+        />
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:hint="Username"
+        android:textColorHint="#b3b3cc"
+        android:textColor="#FFFFFF"
+        tools:layout_editor_absoluteY="159dp"
+        tools:layout_editor_absoluteX="42dp"
+        android:background="#7F000000"
+        android:id="@+id/ETARuser"
+        android:layout_below="@+id/ETARlast"
+        android:layout_alignLeft="@+id/ETARlast"
+        android:layout_alignStart="@+id/ETARlast"
+        android:padding="10dp"
+        />
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:hint="Email"
+        android:textColorHint="#b3b3cc"
+        android:textColor="#FFFFFF"
+        tools:layout_editor_absoluteY="199dp"
+        tools:layout_editor_absoluteX="42dp"
+        android:background="#7F000000"
+        android:id="@+id/ETARemail"
+        android:layout_below="@+id/ETARuser"
+        android:layout_alignLeft="@+id/ETARuser"
+        android:layout_alignStart="@+id/ETARuser"
+        android:padding="10dp"
+        />
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:hint="Password"
+        android:textColorHint="#b3b3cc"
+        android:textColor="#FFFFFF"
+        tools:layout_editor_absoluteY="239dp"
+        tools:layout_editor_absoluteX="42dp"
+        android:background="#7F000000"
+        android:id="@+id/ETARpass"
+        android:layout_below="@+id/ETARemail"
+        android:layout_alignLeft="@+id/ETARemail"
+        android:layout_alignStart="@+id/ETARemail"
+        android:padding="10dp"
+        android:password="true"
+        />
+
+    <Button
+        android:id="@+id/BARreg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:textColor="#000000"
+        tools:layout_editor_absoluteY="342dp"
+        tools:layout_editor_absoluteX="148dp"
+        android:background="#B245A7BA"
+        android:layout_marginTop="38dp"
+        android:layout_below="@+id/ETARpass"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

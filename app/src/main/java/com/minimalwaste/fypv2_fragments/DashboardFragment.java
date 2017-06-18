@@ -1,6 +1,7 @@
 package com.minimalwaste.fypv2_fragments;
 
 
+import android.graphics.Color;
 import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,7 +10,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -22,11 +27,16 @@ import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -34,8 +44,15 @@ import java.util.ArrayList;
  */
 public class DashboardFragment extends Fragment {
 
-    //Initialise Variables
+    //Initialise Variables and variables to store weight and timeStamp data
     BarChart barChart;
+    String weightURL = "http://foodappee.azurewebsites.net/getWaste?id=8";
+    List<String> timeList = new ArrayList<>();
+    List<Integer> weightList = new ArrayList<>();
+
+    //To parse Time
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss");
+    DateFormat xAxis = new SimpleDateFormat("dd/MM");
 
     public DashboardFragment() {
         // Required empty public constructor
@@ -48,59 +65,118 @@ public class DashboardFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
-        //=========================Bar Chart for Volume==============================
-        barChart = (BarChart) view.findViewById(R.id.barGraphVolume);
-        ArrayList<BarEntry> barEntries2 = new ArrayList<>();
-        barEntries2.add(new BarEntry(44f,0));
-        barEntries2.add(new BarEntry(24f,1));
-        barEntries2.add(new BarEntry(15f,2));
-        barEntries2.add(new BarEntry(75f,3));
-        barEntries2.add(new BarEntry(49f,4));
 
-        BarDataSet barDataSet2 = new BarDataSet(barEntries2,"Dates");
+        //---------------FRAGMENT button onclick listener-------------------------------------------
+        Button BFDWeek = (Button) view.findViewById(R.id.BFDweek);
+        Button BFDMonth = (Button) view.findViewById(R.id.BFDmonth);
+        Button BFDYear = (Button) view.findViewById(R.id.BFDyear);
+        final TextView TVFD2 = (TextView) view.findViewById(R.id.TVFD2);
+        TextView TVFDrecom = (TextView) view.findViewById(R.id.TVFDrecom);
 
-        ArrayList<String> theDates2 = new ArrayList<>();
-        theDates2.add("April");
-        theDates2.add("May");
-        theDates2.add("June");
-        theDates2.add("July");
-        theDates2.add("August");
+        BFDWeek.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                weightURL = "http://foodappee.azurewebsites.net/getWaste?id=8";
+                weightURL+="&days=7";
+                getWeightData(weightURL);
+                TVFD2.setText("Weekly Waste Weight");
+            }
+        });
+        BFDMonth.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                weightURL = "http://foodappee.azurewebsites.net/getWaste?id=8";
+                weightURL+="&days=30";
+                getWeightData(weightURL);
+                TVFD2.setText("Monthly Waste Weight");
 
+            }
+        });
+        BFDYear.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                weightURL = "http://foodappee.azurewebsites.net/getWaste?id=8";
+                weightURL+="&days=365";
+                getWeightData(weightURL);
+                TVFD2.setText("Yearly Waste Weight");
+//                putDataIntoView(getView());       //Cannot put this here, coz takes some time to get JSON data
 
-        BarData theData2 = new BarData(theDates2,barDataSet2);
-        barChart.setData(theData2);
+            }
+        });
 
-        barChart.setTouchEnabled(true);
-        barChart.setDragEnabled(true);
-        barChart.setScaleEnabled(true);
-        barChart.animateXY(2000, 2000);
-        barChart.setHorizontalScrollBarEnabled(true);
-        barChart.setDoubleTapToZoomEnabled(true);
-        barChart.setDescription("Volume");
-        barDataSet2.setColors(ColorTemplate.COLORFUL_COLORS);
+        //-------------------Initialise with data---------------------------------------------------
+        getWeightData(weightURL+"&days=7");
+        TVFD2.setText("Weekly Waste Weight");
+        putDataIntoView(view);
 
+        //------------------Recommendation----------------------------------------------------------
+        String recommendations = "Congratulations, you have saved 5kg of waste compared to last week! \n";
+        recommendations += "Please go to the vouchers page to claim your reward";
+        TVFDrecom.setText(recommendations);
 
+        return view;
+    }
 
+    private void getWeightData(String weightURL) {
+        Log.d("Go 1st", "getWeightData: Entering");
+        Ion.with(getActivity())     //This or GetActivity? getActivity for fragments
+                .load(weightURL)
+                .asString()
+                .setCallback(new FutureCallback<String>() {
+
+                    @Override
+                    public void onCompleted(Exception e, String data) {
+                        Log.d("Data sent back", data);
+                        processWeightData(data);
+                        putDataIntoView(getView());         //Must Put this in here coz takes some time to get JSON data
+                    }
+                });
+    }
+
+    private void processWeightData(String data) {
+        try {
+            Log.d("Go 2nd", "processWeightData: Entering");
+            timeList.clear();
+            weightList.clear();
+
+            JSONArray weightJSONArray = new JSONArray(data);
+            for (int i = 0; i < weightJSONArray.length(); i++) {
+                JSONObject weightJSON = weightJSONArray.getJSONObject(i);
+
+                //-----Get TimeStamp Value-----
+                String timeString= weightJSON.getString("Timestamp");
+                //Parse it as a Date object
+                Date timeDate = sdf.parse(timeString);
+                String dates = xAxis.format(timeDate);
+                timeList.add(dates);
+
+                //-----Get Weight Amount-----
+                Integer weightString = weightJSON.getInt("Weight");
+                weightList.add(weightString);
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void putDataIntoView(View view) {         //Duration: 0 week, 1 month, 2 year
         //=========================Bar Chart for Weight==============================
+        Log.d("Go 3rd", "putDataIntoView: Entering");
         barChart = (BarChart) view.findViewById(R.id.barGraphWeight);
+
+        //Form Bar chart entries (y axis values)
         ArrayList<BarEntry> barEntries = new ArrayList<>();
-        barEntries.add(new BarEntry(12f,0));
-        barEntries.add(new BarEntry(18f,1));
-        barEntries.add(new BarEntry(25f,2));
-        barEntries.add(new BarEntry(33f,3));
-        barEntries.add(new BarEntry(60f,4));
+        for (int i = 0; i < weightList.size(); i++) {
+            barEntries.add(new BarEntry(weightList.get(i),i));
+        }
+        BarDataSet barDataSet = new BarDataSet(barEntries, "Dates");
 
-        BarDataSet barDataSet = new BarDataSet(barEntries,"Dates");
-
+        //Form bar chart (x axis values)
         ArrayList<String> theDates = new ArrayList<>();
-        theDates.add("April");
-        theDates.add("May");
-        theDates.add("June");
-        theDates.add("July");
-        theDates.add("August");
+        for (int j = 0; j < timeList.size(); j++) {
+            theDates.add(timeList.get(j));
+        }
 
-
-        BarData theData = new BarData(theDates,barDataSet);
+        //Combine x and y axis data to form bar chart
+        BarData theData = new BarData(theDates, barDataSet);
         barChart.setData(theData);
 
         barChart.setTouchEnabled(true);
@@ -109,11 +185,9 @@ public class DashboardFragment extends Fragment {
         barChart.animateXY(2000, 2000);
         barChart.setHorizontalScrollBarEnabled(true);
         barChart.setDoubleTapToZoomEnabled(true);
-        barChart.setDescription("Results");
-        barChart.setBackgroundColor(114444);
-        barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
-
-        return view;
+        barChart.setDescription("Waste Weight");
+        barChart.setBackgroundColor(Color.rgb(232, 240, 247));
+        barDataSet.setColors(ColorTemplate.VORDIPLOM_COLORS);
     }
 
 

@@ -18,10 +18,16 @@
             android:id="@+id/vouchers"
             android:icon="@drawable/vouchers_icon"
             android:title="Vouchers" />
+
+
     </group>
 
     <item android:title="Personalisation">
         <menu>
+            <item
+                android:id="@+id/preference"
+                android:icon="@drawable/ic_thumbs_up_down_black_24dp"
+                android:title="Preference" />
             <item
                 android:id="@+id/nav_settings"
                 android:icon="@drawable/settings_icon"
